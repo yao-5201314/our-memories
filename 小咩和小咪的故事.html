@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我们的故事 - 甜蜜回忆馆</title>
+
+    <!-- Google Fonts - 优美字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Noto+Serif+SC:wght@300;400;500;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --pink-light: #fff0f3;
+            --pink: #ffb3c1;
+            --pink-mid: #ff8fa3;
+            --pink-deep: #ff6b81;
+            --rose: #e8a0b4;
+            --rose-gold: #c4917b;
+            --cream: #fffaf5;
+            --white: #ffffff;
+            --text-dark: #4a3f3f;
+            --text-mid: #6b5b5b;
+            --text-light: #8c7a7a;
+            --gold: #d4a574;
+            --shadow-soft: 0 4px 20px rgba(180, 140, 140, 0.15);
+            --shadow-card: 0 8px 32px rgba(160, 120, 120, 0.18);
+            --shadow-hover: 0 16px 40px rgba(160, 110, 110, 0.25);
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--pink) var(--pink-light);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--pink-light);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--pink);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--pink-mid);
+        }
+
+        body {
+            font-family: 'Noto Serif SC', 'STSong', 'Songti SC', 'SimSun', serif;
+            background: linear-gradient(160deg, #fef5f7 0%, #fff0f3 15%, #fef9fb 30%, #fff5f6 45%, #fef7f8 55%, #fff3f5 70%, #fef8f9 85%, #fff0f2 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.7;
+            position: relative;
+            cursor: default;
+        }
+
+        /* ============ 飘落花瓣容器 ============ */
+        .petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            top: -60px;
+            opacity: 0;
+            pointer-events: none;
+            animation: petalFall linear infinite;
+            filter: blur(0.5px);
+            will-change: transform, opacity;
+        }
+
+        .petal svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-60px) rotate(0deg) translateX(0px) scale(0.7);
+                opacity: 0;
+            }
+            3% {
+                opacity: 0.85;
+            }
+            15% {
+                transform: translateY(12vh) rotate(60deg) translateX(30px) scale(0.9);
+                opacity: 0.9;
+            }
+            30% {
+                transform: translateY(28vh) rotate(140deg) translateX(-20px) scale(0.75);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(50vh) rotate(250deg) translateX(45px) scale(0.85);
+                opacity: 0.8;
+            }
+            65% {
+                transform: translateY(65vh) rotate(340deg) translateX(-35px) scale(0.7);
+                opacity: 0.6;
+            }
+            80% {
+                transform: translateY(80vh) rotate(420deg) translateX(25px) scale(0.55);
+                opacity: 0.4;
+            }
+            95% {
+                transform: translateY(95vh) rotate(520deg) translateX(-15px) scale(0.3);
+                opacity: 0.15;
+            }
+            100% {
+                transform: translateY(105vh) rotate(600deg) translateX(10px) scale(0.15);
+                opacity: 0;
+            }
+        }
+
+        @keyframes petalSway {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(18px);
+            }
+            75% {
+                transform: translateX(-18px);
+            }
+        }
+
+        /* ============ 点击爱心特效 ============ */
+        .click-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: heartBurst 1.2s ease-out forwards;
+            font-size: 28px;
+            will-change: transform, opacity;
+        }
+
+        @keyframes heartBurst {
+            0% {
+                transform: translateY(0) scale(0.3) rotate(0deg);
+                opacity: 1;
+            }
+            25% {
+                transform: translateY(-40px) scale(1.3) rotate(15deg);
+                opacity: 0.9;
+            }
+            55% {
+                transform: translateY(-100px) scale(0.9) rotate(-10deg);
+                opacity: 0.6;
+            }
+            80% {
+                transform: translateY(-160px) scale(0.5) rotate(5deg);
+                opacity: 0.25;
+            }
+            100% {
+                transform: translateY(-220px) scale(0.15) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        /* ============ 主内容容器 ============ */
+        .main-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 24px 60px;
+        }
+
+        /* ============ Hero 头部区域 ============ */
+        .hero-section {
+            text-align: center;
+            padding: 50px 30px 40px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .hero-ornament {
+            display: inline-block;
+            font-size: 40px;
+            animation: gentleFloat 3s ease-in-out infinite;
+            margin-bottom: 8px;
+        }
+        .hero-ornament.delay {
+            animation-delay: 1.5s;
+            font-size: 32px;
+            margin: 0 6px;
+        }
+
+        @keyframes gentleFloat {
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+            30% {
+                transform: translateY(-14px) scale(1.08);
+            }
+            60% {
+                transform: translateY(-6px) scale(0.95);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Dancing Script', 'KaiTi', 'STKaiti', cursive;
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 700;
+            color: var(--pink-deep);
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px rgba(255, 107, 129, 0.2);
+            animation: fadeInDown 0.9s ease-out;
+        }
+
+        .hero-subtitle {
+            font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+            font-size: clamp(1rem, 2.2vw, 1.3rem);
+            color: var(--text-mid);
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+            animation: fadeInDown 0.9s ease-out 0.15s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 天数计数器 */
+        .days-counter-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 2px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 14px 32px;
+            box-shadow: var(--shadow-soft);
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .days-icon {
+            font-size: 28px;
+            animation: heartbeat 1.2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            14% {
+                transform: scale(1.25);
+            }
+            28% {
+                transform: scale(1);
+            }
+            42% {
+                transform: scale(1.2);
+            }
+            56% {
+                transform: scale(1);
+            }
+        }
+
+        .days-number {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--pink-deep);
+            line-height: 1;
+            min-width: 70px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .days-text {
+            font-size: 1rem;
+            color: var(--text-mid);
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        /* 纪念日信息 */
+        .anniversary-info {
+            margin-top: 14px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            animation: fadeInUp 0.8s ease-out 0.45s both;
+        }
+        .anniversary-info span {
+            color: var(--pink-deep);
+            font-weight: 500;
+        }
+
+        /* ============ 分割线装饰 ============ */
+        .divider-ornament {
+            text-align: center;
+            margin: 20px 0 30px;
+            font-size: 18px;
+            letter-spacing: 8px;
+            color: var(--pink);
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+            user-select: none;
+        }
+
+        /* ============ 回忆时间线 ============ */
+        .section-title {
+            text-align: center;
+            font-family: 'Dancing Script', 'KaiTi', cursive;
+            font-size: 2rem;
+            color: var(--pink-deep);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--pink), transparent);
+            margin: 8px auto 0;
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 35px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 10px 0;
+            margin: 0 auto;
+            max-width: 750px;
+        }
+
+        /* 时间线中央线 */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg,
+                    transparent 0%,
+                    var(--pink) 5%,
+                    var(--pink-mid) 30%,
+                    var(--rose) 60%,
+                    var(--pink) 85%,
+                    transparent 100%);
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        /* 时间线节点 */
+        .timeline-item {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+            padding-right: calc(50% + 35px);
+        }
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+            padding-left: calc(50% + 35px);
+        }
+
+        /* 时间线圆点 */
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 18px;
+            background: var(--white);
+            border: 3px solid var(--pink-deep);
+            border-radius: 50%;
+            z-index: 3;
+            box-shadow: 0 0 0 8px rgba(255, 107, 129, 0.12);
+            transition: all 0.4s ease;
+        }
+        .timeline-item:hover .timeline-dot {
+            background: var(--pink-deep);
+            box-shadow: 0 0 0 16px rgba(255, 107, 129, 0.25);
+            transform: translate(-50%, -50%) scale(1.3);
+        }
+
+        /* 时间线卡片 */
+        .timeline-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px 22px;
+            box-shadow: var(--shadow-card);
+            transition: all var(--transition-smooth);
+            cursor: default;
+            position: relative;
+            flex: 1;
+            max-width: 380px;
+        }
+        .timeline-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+            border-color: var(--pink);
+        }
+        .timeline-card .card-date {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: var(--pink-deep);
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+        .timeline-card .card-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+        .timeline-card .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-mid);
+            line-height: 1.6;
+        }
+        .timeline-card .card-emoji {
+            font-size: 2rem;
+            position: absolute;
+            top: -18px;
+            right: 16px;
+            animation: gentleFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        /* ============ 照片画廊 ============ */
+        .gallery-section {
+            margin-top: 50px;
+            padding-top: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 3 / 4;
+            cursor: pointer;
+            box-shadow: var(--shadow-card);
+            transition: all var(--transition-smooth);
+            background: linear-gradient(135deg, #fce4e9, #f8d5db, #fde8ec);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.4s ease;
+        }
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gallery-item:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-6px) scale(1.02);
+            border-color: var(--pink);
+            z-index: 5;
+        }
+        .gallery-item .gallery-placeholder {
+            text-align: center;
+            color: var(--pink-deep);
+            pointer-events: none;
+            user-select: none;
+        }
+        .gallery-item .gallery-placeholder .place-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 8px;
+            animation: gentleFloat 3.5s ease-in-out infinite;
+        }
+        .gallery-item .gallery-placeholder .place-text {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            font-family: 'Noto Serif SC', serif;
+        }
+        /* 不同卡片不同渐变 */
+        .gallery-item:nth-child(1) {
+            background: linear-gradient(135deg, #fef0f3, #fce4ec, #fde8eb);
+        }
+        .gallery-item:nth-child(2) {
+            background: linear-gradient(135deg, #fdf2f5, #fbe9ee, #fef3f6);
+        }
+        .gallery-item:nth-child(3) {
+            background: linear-gradient(135deg, #fef5f7, #fce8ef, #fdf0f4);
+        }
+        .gallery-item:nth-child(4) {
+            background: linear-gradient(135deg, #fef3f5, #fde6ed, #fef2f5);
+        }
+        .gallery-item:nth-child(5) {
+            background: linear-gradient(135deg, #fef7f9, #fce9f0, #fdf3f7);
+        }
+        .gallery-item:nth-child(6) {
+            background: linear-gradient(135deg, #fef2f4, #fde7ee, #fef1f4);
+        }
+
+        /* 照片替换提示标签 */
+        .gallery-item .photo-label {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            pointer-events: none;
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover .photo-label {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--pink-deep);
+        }
+
+        /* ============ 甜蜜语录 ============ */
+        .quotes-section {
+            margin-top: 55px;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .quote-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur（10px）;
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px 28px;
+            max-width: 600px;
+            margin: 0 auto 16px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.5s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 6rem;
+            color: rgba(255, 107, 129, 0.1);
+            pointer-events: none;
+            line-height: 1;
+        }
+        .quote-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+        .quote-card .quote-text {
+            font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            letter-spacing: 1.5px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        .quote-card .quote-from {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        .quote-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .quote-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--pink);
+            opacity: 0.4;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+        .quote-dot.active {
+            opacity: 1;
+            background: var(--pink-deep);
+            transform: scale(1.4);
+            box-shadow: 0 0 8px rgba(255, 107, 129, 0.5);
+        }
+        .quote-dot:hover {
+            opacity: 0.75;
+            transform: scale(1.2);
+        }
+
+        /* ============ 爱心按钮 ============ */
+        .heart-button-wrapper {
+            text-align: center;
+            margin: 45px 0 25px;
+        }
+
+        .heart-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--pink-deep), var(--pink-mid));
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            font-family: 'Noto Serif SC', serif;
+            box-shadow: 0 8px 25px rgba(255, 107, 129, 0.35);
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        .heart-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 35px rgba(255, 107, 129, 0.45);
+            background: linear-gradient(135deg, #ff5470, #ff7b95);
+        }
+        .heart-button:active {
+            transform: scale(0.95);
+            transition: all 0.15s ease;
+        }
+        .heart-button .btn-icon {
+            font-size: 1.4rem;
+            animation: heartbeat 1.2s ease-in-out infinite;
+        }
+        /* 按钮波纹 */
+        .heart-button .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: rippleEffect 0.7s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* ============ 底部 ============ */
+        .footer-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+        .footer-section .footer-hearts {
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+            margin-bottom: 6px;
+            animation: gentleFloat 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        /* ============ Lightbox 弹窗 ============ */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transform: scale(0.85);
+            transition: transform 0.35s ease;
+        }
+        .lightbox-overlay.active .lightbox-content {
+            transform: scale(1);
+        }
+        .lightbox-content .lb-emoji {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 12px;
+            animation: gentleFloat 2.5s ease-in-out infinite;
+        }
+        .lightbox-content .lb-text {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            letter-spacing: 1.5px;
+            line-height: 1.8;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 16px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            padding: 6px 10px;
+            border-radius: 50%;
+            line-height: 1;
+        }
+        .lightbox-close:hover {
+            color: var(--pink-deep);
+            background: var(--pink-light);
+        }
+
+        /* ============ 响应式设计 ============ */
+        @media (max-width: 768px) {
+            .main-wrapper {
+                padding: 10px 14px 40px;
+            }
+            .hero-section {
+                padding: 30px 16px 25px;
+            }
+            .days-counter-wrapper {
+                padding: 10px 20px;
+                gap: 6px;
+            }
+            .days-number {
+                font-size: 2.4rem;
+                min-width: 50px;
+            }
+            .days-text {
+                font-size: 0.85rem;
+            }
+
+            /* 时间线移动端适配 */
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                flex-direction: row;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            .timeline-dot {
+                left: 20px;
+                top: 18px;
+                width: 14px;
+                height: 14px;
+                border-width: 2.5px;
+                box-shadow: 0 0 0 5px rgba(255, 107, 129, 0.12);
+            }
+            .timeline-card {
+                max-width: 100%;
+                padding: 16px 14px;
+            }
+            .timeline-card .card-emoji {
+                font-size: 1.5rem;
+                top: -14px;
+                right: 10px;
+            }
+            .timeline-card .card-date {
+                font-size: 1.1rem;
+            }
+            .timeline-card .card-title {
+                font-size: 0.95rem;
+            }
+            .timeline-card .card-desc {
+                font-size: 0.8rem;
+            }
+            .timeline-item {
+                margin-bottom: 28px;
+            }
+
+            /* 画廊 */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .gallery-item {
+                aspect-ratio: 3 / 4;
+                border-radius: 12px;
+            }
+            .gallery-item .gallery-placeholder .place-icon {
+                font-size: 2.2rem;
+            }
+            .gallery-item .gallery-placeholder .place-text {
+                font-size: 0.7rem;
+            }
+            .gallery-item .photo-label {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+                bottom: 6px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .quote-card {
+                padding: 22px 18px;
+            }
+            .quote-card .quote-text {
+                font-size: 1rem;
+            }
+            .heart-button {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .gallery-item {
+                aspect-ratio: 3 / 4;
+            }
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .days-number {
+                font-size: 2rem;
+            }
+            .timeline-card {
+                padding: 12px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== 飘落花瓣容器 ==================== -->
+    <div class="petals-container" id="petalsContainer" aria-hidden="true"></div>
+
+    <!-- ==================== 主内容区 ==================== -->
+    <div class="main-wrapper">
+
+        <!-- ========== Hero 头部 ========== -->
+        <header class="hero-section">
+            <div class="hero-ornament">🌸</div>
+            <h1 class="hero-title">我们的故事</h1>
+            <p class="hero-subtitle">Our Sweet Memories</p>
+
+            <!-- 天数计数器 -->
+            <div class="days-counter-wrapper">
+                <span class="days-icon">💕</span>
+                <span class="days-number" id="daysCount">0</span>
+                <span class="days-text">天</span>
+            </div>
+            <p class="anniversary-info">
+                从 <span id="startDateDisplay">2023年5月20日</span> 开始，
+                <br class="mobile-break">每一天都是最珍贵的礼物
+            </p>
+        </header>
+
+        <!-- 分割装饰 -->
+        <div class="divider-ornament">— ✦ ❤ ✦ —</div>
+
+        <!-- ========== 回忆时间线 ========== -->
+        <section>
+            <div class="section-title">时光印记</div>
+            <p class="section-subtitle">属于我们的每一个重要时刻</p>
+            <div class="timeline" id="timeline">
+                <!-- 时间线节点由JS动态渲染 -->
+            </div>
+        </section>
+
+        <!-- 分割装饰 -->
+        <div class="divider-ornament">— ✦ ❤ ✦ —</div>
+
+        <!-- ========== 照片画廊 ========== -->
+        <section class="gallery-section">
+            <div class="section-title">甜蜜瞬间</div>
+            <p class="section-subtitle">每一帧都是心动，点击可查看回忆</p>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- 照片卡片由JS动态渲染 -->
+            </div>
+        </section>
+
+        <!-- ========== 甜蜜语录 ========== -->
+        <section class="quotes-section">
+            <div class="section-title">想对你说</div>
+            <p class="section-subtitle">点击卡片切换甜言蜜语</p>
+            <div class="quote-card" id="quoteCard" title="点击切换下一句">
+                <p class="quote-text" id="quoteText"></p>
+                <p class="quote-from" id="quoteFrom"></p>
+            </div>
+            <div class="quote-nav" id="quoteNav"></div>
+        </section>
+
+        <!-- ========== 爱心互动按钮 ========== -->
+        <div class="heart-button-wrapper">
+            <button class="heart-button" id="heartButton">
+                <span class="btn-icon">💖</span> 点击撒爱心
+            </button>
+        </div>
+
+        <!-- ========== 底部 ========== -->
+        <footer class="footer-section">
+            <div class="footer-hearts">💗 💕 💗</div>
+            <p>Forever & Always</p>
+            <p style="font-size:0.75rem;margin-top:4px;">— 献给最爱的你 —</p>
+        </footer>
+    </div>
+
+    <!-- ==================== Lightbox 弹窗 ==================== -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose" aria-label="关闭">✕</button>
+            <span class="lb-emoji" id="lbEmoji">📸</span>
+            <p class="lb-text" id="lbText"></p>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ==================== 配置区（请根据实际情况修改） ====================
+            // 纪念日开始日期（年-月-日），请修改为你们的实际纪念日
+            const START_DATE = new Date('2023-05-20');
+
+            // 时间线数据 - 请根据你们的实际经历修改
+            const timelineData = [
+                { date: '2026年2月24日', title: '初见心动', desc: '在那个阳光正好的午后，我第一次见到了你，世界突然变得明亮了起来。',
+                    emoji: '👋' },
+                { date: '2026年2月27日', title: '正式在一起', desc: '对我而言，今天是一个最浪漫的日子。你点头的那一刻，我的世界开满了花。',
+                emoji: '💞' },
+                { date: '2026年10月1日', title: '第一次旅行', desc: '一起去了江边，晚风吹过你的发梢，那是我见过最美的风景。', emoji: '🌊' },
+                { date: '2026年12月24日', title: '平安夜之约', desc: '街灯闪烁，雪花飘落，我们在圣诞树下许下了共同的愿望。', emoji: '🎄' },
+                { date: '2027年2月14日', title: '第一个情人节', desc: '准备了礼物，看到你的笑容，一切都那么完美。', emoji: '🌹' },
+                { date: '2027年2月27日', title: '一周年纪念', desc: '365天的甜蜜，365天的陪伴。未来的每一个周年，我都要和你一起过。', emoji: '🎂' },
+                { date: '2027年5月1日', title: '一起看日出', desc: '凌晨四点起床，走路到山顶。当第一缕阳光洒在你脸上时，我确定你就是我的太阳。',
+                emoji: '🌅' },
+                { date: '2028年1月1日', title: '新年的第一个吻', desc: '烟花在夜空绽放，我们在人群中紧紧相拥。新的一年，依旧是你。', emoji: '🎆' },
+            ];
+
+            // 画廊照片数据（请替换为你们的实际照片路径）
+            const galleryPhotos = [
+                { id: 1, icon: '📸', text: '我们的第一张合照', desc: '这是我们第一张正式的合照，两个人都笑得好灿烂。每次看到都会嘴角上扬~' },
+                { id: 2, icon: '🌅', text: '海边的日落', desc: '那次旅行，海边的日落美得不像话。但在我眼里，你比日落更美。' },
+                { id: 3, icon: '🍰', text: '一起做的蛋糕', desc: '第一次一起烘焙，虽然蛋糕有点歪，但那是世界上最好吃的蛋糕。' },
+                { id: 4, icon: '🎵', text: '音乐节之夜', desc: '在音乐节上，人潮拥挤，但我只看得见你跟着节奏摇摆的样子。' },
+                { id: 5, icon: '☕', text: '周末的咖啡时光', desc: '每个周末的咖啡馆约会，你喝拿铁，我喝美式，聊着有的没的，就是最幸福的时光。' },
+                { id: 6, icon: '🌟', text: '星空下的约定', desc: '躺在草地上看星星，你指着一颗最亮的说那是我们。我说好，那就叫它"我们的星"。' },
+            ];
+
+            // 甜蜜语录
+            const quotesList = [
+                { text: '遇见你，是我生命中最美丽的意外。', from: '— 写给你的第一封信' },
+                { text: '你是我所有温柔的来源，也是我所有心动的归宿。', from: '— 某个想你的夜晚' },
+                { text: '世界很大，但我的心很小，小到只能装下你一个人。', from: '— 日记里的句子' },
+                { text: '和你在一起的每一天，都是情人节。', from: '— 日常告白' },
+                { text: '我想和你一起，看遍世间所有的日出日落。', from: '— 旅行前的约定' },
+                { text: '你是我的软肋，也是我的铠甲。', from: '— 心里话' },
+                { text: '如果可以，我想把所有的温柔都给你。', from: '— 深夜消息' },
+                { text: '谢谢你来爱我，也谢谢你让我爱你。', from: '— 感恩节那天' },
+            ];
+
+            // ==================== 初始化花瓣 ====================
+            function createPetals() {
+                const container = document.getElementById('petalsContainer');
+                const petalColors = [
+                    '#ffb3c1', '#ffc2d1', '#ffd1dc', '#ffb8c9',
+                    '#f8c4d4', '#ffccd5', '#fddde6', '#ffe0e6',
+                    '#ffc8d6', '#f9d5df', '#ffdae3', '#fce4ec',
+                ];
+
+                const petalShapes = [
+                    // 樱花形状SVG
+                    `<svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="15" cy="10" rx="6" ry="9" fill="CURRENTCOLOR" opacity="0.85" transform="rotate(0,15,15)"/>
+                        <ellipse cx="15" cy="10" rx="6" ry="9" fill="CURRENTCOLOR" opacity="0.85" transform="rotate(72,15,15)"/>
+                        <ellipse cx="15" cy="10" rx="6" ry="9" fill="CURRENTCOLOR" opacity="0.85" transform="rotate(144,15,15)"/>
+                        <ellipse cx="15" cy="10" rx="6" ry="9" fill="CURRENTCOLOR" opacity="0.85" transform="rotate(216,15,15)"/>
+                        <ellipse cx="15" cy="10" rx="6" ry="9" fill="CURRENTCOLOR" opacity="0.85" transform="rotate(288,15,15)"/>
+                        <circle cx="15" cy="15" r="3" fill="#fff5f5" opacity="0.7"/>
+                    </svg>`,
+                    // 爱心形状SVG
+                    `<svg viewBox="0 0 32 28" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 26 C16 26 2 18 2 9 C2 3.5 6.5 1 9.5 1 C12.5 1 16 4 16 7 C16 4 19.5 1 22.5 1 C25.5 1 30 3.5 30 9 C30 18 16 26 16 26Z" fill="CURRENTCOLOR" opacity="0.8"/>
+                    </svg>`,
+                    // 简单椭圆花瓣
+                    `<svg viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="8" cy="10" rx="7" ry="9" fill="CURRENTCOLOR" opacity="0.8"/>
+                    </svg>`,
+                ];
+
+                const count = window.innerWidth < 600 ? 18 : 28;
+                const fragment = document.createDocumentFragment();
+
+                for (let i = 0; i < count; i++) {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal';
+                    const size = Math.random() * 18 + 14; // 14-32px
+                    petal.style.width = size + 'px';
+                    petal.style.height = size + 'px';
+                    petal.style.left = Math.random() * 95 + '%';
+                    petal.style.animationDuration = (Math.random() * 14 + 10) + 's'; // 10-24s
+                    petal.style.animationDelay = (Math.random() * 16) + 's'; // 0-16s
+                    petal.style.opacity = (Math.random() * 0.3 + 0.15); // 基础透明度
+
+                    const shapeIndex = Math.floor(Math.random() * petalShapes.length);
+                    const color = petalColors[Math.floor(Math.random() * petalColors.length)];
+                    petal.innerHTML = petalShapes[shapeIndex].replace(/CURRENTCOLOR/g, color);
+
+                    fragment.appendChild(petal);
+                }
+
+                container.appendChild(fragment);
+            }
+
+            // ==================== 计算天数 ====================
+            function updateDaysCount() {
+                const now = new Date();
+                const diffTime = now.getTime() - START_DATE.getTime();
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                const daysElement = document.getElementById('daysCount');
+
+                if (diffDays >= 0) {
+                    // 数字递增动画
+                    animateNumber(daysElement, diffDays);
+                } else {
+                    daysElement.textContent = '...';
+                }
+
+                // 更新显示的开始日期
+                const dateStr = START_DATE.getFullYear() + '年' +
+                    (START_DATE.getMonth() + 1) + '月' +
+                    START_DATE.getDate() + '日';
+                document.getElementById('startDateDisplay').textContent = dateStr;
+            }
+
+            function animateNumber(element, target) {
+                const currentText = element.textContent;
+                const current = parseInt(currentText) || 0;
+                if (current === target && current > 0) return;
+
+                const duration = 800;
+                const startTime = performance.now();
+                const startVal = current > 0 ? current : Math.max(0, target - 200);
+
+                function step(timestamp) {
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // easeOutCubic
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const val = Math.round(startVal + (target - startVal) * eased);
+                    element.textContent = val;
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        element.textContent = target;
+                    }
+                }
+                requestAnimationFrame(step);
+            }
+
+            // ==================== 渲染时间线 ====================
+            function renderTimeline() {
+                const container = document.getElementById('timeline');
+                const fragment = document.createDocumentFragment();
+
+                timelineData.forEach((item, index) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'timeline-item';
+                    itemDiv.style.transitionDelay = (index * 0.08) + 's';
+
+                    itemDiv.innerHTML = `
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <span class="card-emoji">${item.emoji}</span>
+                            <div class="card-date">${item.date}</div>
+                            <div class="card-title">${item.title}</div>
+                            <div class="card-desc">${item.desc}</div>
+                        </div>
+                    `;
+                    fragment.appendChild(itemDiv);
+                });
+
+                container.appendChild(fragment);
+
+                // 延迟触发动画
+                setTimeout(() => {
+                    document.querySelectorAll('.timeline-item').forEach((item, i) => {
+                        setTimeout(() => {
+                            item.classList.add('visible');
+                        }, i * 100);
+                    });
+                }, 300);
+            }
+
+            // ==================== 渲染画廊 ====================
+            function renderGallery() {
+                const grid = document.getElementById('galleryGrid');
+                const fragment = document.createDocumentFragment();
+
+                galleryPhotos.forEach((photo, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    item.style.transitionDelay = (index * 0.1) + 's';
+                    item.setAttribute('data-photo-id', photo.id);
+                    item.title = '点击查看回忆';
+
+                    item.innerHTML = `
+                        <div class="gallery-placeholder">
+                            <span class="place-icon">${photo.icon}</span>
+                            <span class="place-text">${photo.text}</span>
+                        </div>
+                        <span class="photo-label">📷 替换照片 ${photo.id}</span>
+                    `;
+
+                    // 点击打开lightbox
+                    item.addEventListener('click', () => {
+                        openLightbox(photo);
+                    });
+
+                    fragment.appendChild(item);
+                });
+
+                grid.appendChild(fragment);
+
+                // 延迟触发动画
+                setTimeout(() => {
+                    document.querySelectorAll('.gallery-item').forEach((item, i) => {
+                        setTimeout(() => {
+                            item.classList.add('visible');
+                        }, i * 120);
+                    });
+                }, 400);
+            }
+
+            // ==================== Lightbox ====================
+            function openLightbox(photo) {
+                const overlay = document.getElementById('lightboxOverlay');
+                document.getElementById('lbEmoji').textContent = photo.icon;
+                document.getElementById('lbText').textContent = photo.desc;
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                const overlay = document.getElementById('lightboxOverlay');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+            document.getElementById('lightboxOverlay').addEventListener('click', function(e) {
+                if (e.target === this) closeLightbox();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeLightbox();
+            });
+
+            // ==================== 甜蜜语录轮播 ====================
+            let currentQuoteIndex = 0;
+
+            function renderQuotes() {
+                const quoteNav = document.getElementById('quoteNav');
+                const fragment = document.createDocumentFragment();
+
+                quotesList.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'quote-dot';
+                    if (index === 0) dot.classList.add('active');
+                    dot.setAttribute('aria-label', '切换到第' + (index + 1) + '句');
+                    dot.addEventListener('click', () => switchQuote(index));
+                    fragment.appendChild(dot);
+                });
+
+                quoteNav.appendChild(fragment);
+                updateQuoteDisplay();
+            }
+
+            function switchQuote(index) {
+                currentQuoteIndex = index;
+                updateQuoteDisplay();
+
+                // 更新dot状态
+                document.querySelectorAll('.quote-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            function updateQuoteDisplay() {
+                const quote = quotesList[currentQuoteIndex];
+                document.getElementById('quoteText').textContent = quote.text;
+                document.getElementById('quoteFrom').textContent = quote.from;
+
+                // 添加轻微动画
+                const card = document.getElementById('quoteCard');
+                card.style.transform = 'scale(0.97)';
+                card.style.opacity = '0.6';
+                setTimeout(() => {
+                    card.style.transform = 'scale(1)';
+                    card.style.opacity = '1';
+                }, 150);
+            }
+
+            // 点击卡片切换下一句
+            document.getElementById('quoteCard').addEventListener('click', function() {
+                const nextIndex = (currentQuoteIndex + 1) % quotesList.length;
+                switchQuote(nextIndex);
+            });
+
+            // ==================== 点击产生爱心特效 ====================
+            function createClickHeart(x, y) {
+                const heart = document.createElement('span');
+                heart.className = 'click-heart';
+                const emojis = ['💕', '💖', '💗', '💝', '💘', '✨', '🌸', '💐', '🩷', '❤️‍🔥'];
+                heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+                heart.style.fontSize = (Math.random() * 20 + 22) + 'px';
+                document.body.appendChild(heart);
+
+                // 动画结束后移除元素
+                heart.addEventListener('animationend', () => {
+                    heart.remove();
+                });
+            }
+
+            // 全局点击事件
+            document.addEventListener('click', function(e) {
+                // 避免在按钮、链接等元素上触发（但按钮自己会触发）
+                const tag = e.target.tagName.toLowerCase();
+                if (tag === 'button' || tag === 'a' || tag === 'input' || tag === 'textarea') {
+                    return; // 按钮类元素由自身处理
+                }
+                createClickHeart(e.clientX, e.clientY);
+            });
+
+            // ==================== 爱心按钮 - 撒爱心 ====================
+            function burstHearts(x, y, count = 14) {
+                for (let i = 0; i < count; i++) {
+                    setTimeout(() => {
+                        const offsetX = (Math.random() - 0.5) * 180;
+                        const offsetY = (Math.random() - 0.5) * 180 - 30;
+                        createClickHeart(x + offsetX, y + offsetY);
+                    }, i * 25);
+                }
+            }
+
+            document.getElementById('heartButton').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const rect = this.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
+                burstHearts(cx, cy, 20);
+
+                // 按钮波纹效果
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                this.appendChild(ripple);
+                ripple.addEventListener('animationend', () => ripple.remove());
+            });
+
+            // ==================== 滚动触发时间线动画 ====================
+            function handleScrollReveal() {
+                const items = document.querySelectorAll('.timeline-item:not(.visible)');
+                const galleryItems = document.querySelectorAll('.gallery-item:not(.visible)');
+
+                const allHidden = [...items, ...galleryItems];
+                if (allHidden.length === 0) return;
+
+                const windowHeight = window.innerHeight;
+                const triggerOffset = 80;
+
+                allHidden.forEach(item => {
+                    const rect = item.getBoundingClientRect();
+                    if (rect.top < windowHeight - triggerOffset && rect.bottom > 0) {
+                        item.classList.add('visible');
+                    }
+                });
+            }
+
+            // ==================== 键盘快捷键 ====================
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight') {
+                    // 切换下一句语录
+                    const nextIndex = (currentQuoteIndex + 1) % quotesList.length;
+                    switchQuote(nextIndex);
+                } else if (e.key === 'ArrowLeft') {
+                    const prevIndex = (currentQuoteIndex - 1 + quotesList.length) % quotesList.length;
+                    switchQuote(prevIndex);
+                }
+            });
+
+            // ==================== 启动 ====================
+            function init() {
+                createPetals();
+                updateDaysCount();
+                renderTimeline();
+                renderGallery();
+                renderQuotes();
+
+                // 监听滚动
+                window.addEventListener('scroll', handleScrollReveal, { passive: true });
+                // 初始检查
+                setTimeout(handleScrollReveal, 600);
+
+                // 每天更新天数（检查日期变化）
+                setInterval(() => {
+                    const now = new Date();
+                    if (now.getHours() === 0 && now.getMinutes() === 0) {
+                        updateDaysCount();
+                    }
+                }, 60000); // 每分钟检查一次
+
+                // 同时也每秒轻度检查（用于跨天后及时更新）
+                let lastDay = new Date().getDate();
+                setInterval(() => {
+                    const currentDay = new Date().getDate();
+                    if (currentDay !== lastDay) {
+                        lastDay = currentDay;
+                        updateDaysCount();
+                    }
+                }, 30000);
+
+                console.log('💕 我们的故事 - 甜蜜回忆馆已就绪');
+                console.log('🌸 点击页面任意位置会出现爱心哦~');
+                console.log('📸 点击照片卡片可以查看回忆详情');
+                console.log('💬 点击语录卡片可以切换甜言蜜语');
+                console.log('💖 点击底部按钮可以撒爱心');
+                console.log('⌨️  使用左右方向键可以切换语录');
+                console.log('📝 请根据实际情况修改代码中的配置（纪念日、时间线、照片等）');
+            }
+
+            // 页面加载完成后初始化
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+</body>
+</html>
