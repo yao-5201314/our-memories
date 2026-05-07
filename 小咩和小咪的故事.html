@@ -1211,12 +1211,10 @@
                     item.title = '点击查看回忆';
 
                     item.innerHTML = `
-                        <div class="gallery-placeholder">
-                            <span class="place-icon">${photo.icon}</span>
-                            <span class="place-text">${photo.text}</span>
-                        </div>
-                        <span class="photo-label">📷 替换照片 ${photo.id}</span>
-                    `;
+    <img src="${photo.img}" alt="${photo.text}" 
+         style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
+    <span class="photo-label">${photo.text}</span>
+`;
 
                     // 点击打开lightbox
                     item.addEventListener('click', () => {
